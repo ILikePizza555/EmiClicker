@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Amatic+SC|Cherry+Swash|Comfortaa|Damion|Indie+Flower|Katibeh|Merienda|Press+Start+2P|Sacramento|Salsa|Special+Elite|Ubuntu&display=swap');
+            html,
+            body 
+            {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                line-height: 1.2;
+                font-family: 'Ubuntu', sans-serif;
+            }
+
+            .page-container{
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+
+            .emi-container {
+                display: flex;
+                flex-grow: 2;
+            }
+
+            .emi-column {
+                width: 183px;
+                margin: 1em;
+            }
+
+            .emi-profile > img {
+                border: 1px black solid;
+            }
+
+            .emi-text {
+                margin-right: 1em;
+            }
+
+            .page-footer {
+                text-align: center;
+            }
+
+            .emi-text {
+                margin-right: 1em;
+            }
+
+            .emi {
+                flex-grow: 2;
+                height: 100%;
+            }
+
+            #emi-button {
+                margin-top: 1em;
+                width: 100%;
+                font-size: 16px;
+            }
+            #emi {                
+                overflow-wrap: anywhere;
+            }
+        </style>
+        <script type="text/javascript">
+            "use strict";
+            function pickRandom(arr) {
+                return arr[Math.floor(Math.random() * arr.length)];
+            }
+
+            window.onload = () => {
+                const views = {
+                    "emi": document.getElementById("emi"),
+                    "emiCounter": document.getElementById("emi-count"),
+                    "emiButton": document.getElementById("emi-button"),
+                };
+
+                const state = {
+                    emiCount: 0,
+                };
+
+                const fontFamilies = ["Amatic SC", "Cherry Swash", "Comfortaa", "Damion", "Indie Flower", 
+                "Katibeh", "Merienda", "Press Start 2P", "Sacramento", "Salsa", "Special Elite", "Ubuntu"]
+                const colors = ["#80080", "7F00FF", "#7851A9", "black", "#BF00FF", "#9370DB", "#9370DB", "#9370DB", "#E6E6FA"]
+
+                function createEmi() {
+                    const newEmi = document.createElement("span");
+                    newEmi.className = "emi-text";
+                    newEmi.style.fontFamily = `'${pickRandom(fontFamilies)}', sans-serif`;
+                    newEmi.style.fontSize = (Math.floor(Math.random() * 61) + 10) + "px";
+                    newEmi.style.color = pickRandom(colors);
+                    newEmi.textContent = "Emi";
+                    return newEmi;
+                }
+
+                views.emiButton.addEventListener("click", () => {
+                    state.emiCount += 1;
+                    
+                    views.emi.prepend(createEmi());
+                    views.emiCounter.textContent = state.emiCount + " emies";
+                });
+            };
+        </script>
+    </head>
+    <body>
+        <div class="page-container">
+            <div class="emi-container">
+                <div class="emi-column">
+                    <div class="emi-profile">
+                        <img width=183 height=183 src="https://social.hikaruaikawa.com/media/ca63a09940a8048f0863e700956aec421e52ff6f71cb60bd25d0fa060b29b7fa.png?name=blob.png">
+                    </div>
+                    <button id="emi-button">Emi!</button>
+                </div>
+                <div class="emi">
+                    <h1>Emi! <small id="emi-count">0 emies</small></h1>
+                    <div id="emi"></div>
+                </div>
+            </div>
+            <footer class="page-footer">
+                <small>Made with love by Izzy!</small>
+            </footer>
+        </div>
+    </body>
+</html>
